@@ -1,3 +1,4 @@
+
 <?php
 //Import PHPMailer classes into the global namespace
 //These must be at the top of your script, not inside a function
@@ -17,12 +18,14 @@ if(isset($_POST['send'])){
     $subject = htmlentities($_POST['subject']);
     $message = htmlentities($_POST['message']);
 
+    $GooglePassword = getenv('GOOGLE_APP_PASSWORD');//returns: localhost
+
     $mail = new PHPMailer(true);
     $mail->isSMTP();
     $mail->Host = 'smtp.gmail.com';
     $mail->SMTPAuth = true;
     $mail->Username = 'daudabdulrahman22@gmail.com';
-    $mail->Password = 'hvpfycadzqqknkho';
+    $mail->Password = ($GooglePassword);
     $mail->Port = 465;
     $mail->SMTPSecure = 'ssl';
     $mail->isHTML(true);                //Set email format to HTML
