@@ -14,6 +14,7 @@
   <meta name="HandheldFriendly" content="true">
   <title> Contact Me </title>
   <link rel="stylesheet" href="css/theme.min.css">
+  <link rel="PHP" href="phpMailer/index.php">
 </head>
 
 <body class="d-flex h-100 w-100 bg-black text-white" data-bs-spy="scroll" data-bs-target="#navScroll">
@@ -41,7 +42,7 @@
           <p>I can assist you with developing a product, feature, or website. Examine some of my work and experience! If you enjoy what you see and have a project that needs to be developed, please do not hesitate to contact me.</p>
           </div>
 
-          <form class="row">
+          <form class="row" method="post">
             <div class="col-12">
               <div class="mb-3">
                 <label for="name" class="form-label">Your Full Name</label>
@@ -49,19 +50,19 @@
                   id="exampleInputFullName">
               </div>
               <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">Email address</label>
+                <label for="exampleInputEmail1" class="form-label" required>Email address</label>
                 <input type="email" class="form-control form-control-lg bg-gray-800 border-dark" id="exampleInputEmail1"
                   aria-describedby="emailHelp">
                 <div id="emailHelp" class="form-text">I'll never share your email with anyone else.</div>
               </div>
               <div class="mb-3">
-                <label for="exampleInputSubject" class="form-label">Subject</label>
+                <label for="exampleInputSubject" class="form-label" required>Subject</label>
                 <input type="subject" class="form-control form-control-lg bg-gray-800 border-dark"
                   id="subject">
               </div>
               <div class="mb-3">
-                <label for="message" class="form-label">Meassage</label>
-                <textarea type="text" class="form-control form-control-lg bg-gray-800 border-dark"
+                <label for="message" class="form-label" required>Message</label>
+                <textarea type="message" class="form-control form-control-lg bg-gray-800 border-dark"
                   id="exampleInputMessage"></textarea>
               </div>
               <div class="mb-3 form-check py-3">
@@ -71,7 +72,7 @@
                   If you check this box <strong>I will not send out my articles</strong> to you at all...on
                   Mondays.</label>
               </div>
-              <button type="submit" class="btn btn-white btn-xl mb-4">Submit</button>
+              <button type="submit" class="btn btn-white btn-xl mb-4" name="send">Submit</button>
             </div>
           </form>
 
