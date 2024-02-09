@@ -43,7 +43,7 @@
               me.</p>
           </div>
 
-          <form class="row">
+          <form class="row" id="myform">
             <div class="col-12">
               <div class="mb-3">
                 <label for="name" class="form-label">Your Full Name</label>
@@ -58,7 +58,7 @@
               </div>
               <div class="mb-3">
                 <label for="exampleInputSubject" class="form-label">Subject</label>
-                <input type="subject" class="form-control form-control-lg bg-gray-800 border-dark" id="subject" required>
+                <input type="subject" class="form-control form-control-lg bg-gray-800 border-dark" id="exampleInputSubject" required>
               </div>
               <div class="mb-3">
                 <label for="message" class="form-label">Meassage</label>
@@ -72,7 +72,7 @@
                   If you check this box <strong>I will not send out my articles</strong> to you at all...on
                   Mondays.</label>
               </div>
-              <button type="submit" class="btn btn-white btn-xl mb-4">Submit</button>
+              <button type="submit" onclick="sendEmail()" class="btn btn-white btn-xl mb-4">Submit</button>
             </div>
           </form>
 
@@ -83,6 +83,43 @@
     </div>
 
   </div>
+
+  <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript">
+        function sendEmail() {
+            var name = $("#exampleInputFullName");
+            var email = $("#exampleInputEmail1");
+            var subject = $("#exampleInputSubject");
+            var body = $("#exampleInputMessage");
+
+            if (isNotEmpty(name) && isNotEmpty(email) && isNotEmpty(subject) && isNotEmpty(body)) {
+                $.ajax({
+                   url: "http://localhost:3000/sendEmail.php",
+                   method: 'POST',
+                   dataType: 'json',
+                   data: {
+                       name: name.val(),
+                       email: email.val(),
+                       subject: subject.val(),
+                       body: body.val()
+                   }, success: function (response) {
+                        $('#myForm')[0].reset();
+                        $('.sent-notification').text("Message Sent Successfully.");
+                   }
+                });
+            }
+        }
+
+        function isNotEmpty(caller) {
+            if (caller.val() == "") {
+                caller.css('border', '1px solid red');
+                return false;
+            } else
+                caller.css('border', '');
+
+            return true;
+        }
+    </script>
 </body>
 
 </html>
